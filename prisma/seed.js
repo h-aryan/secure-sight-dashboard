@@ -16,31 +16,38 @@ async function main() {
   });
 
   const incidents = [];
-  cameraIds = [1, 2, 3];
+  const cameraIds = [1, 2, 3];
 
-  const types = ["Unauthorized Access", "Gun Threat", "Face Recognised"];
+  const types = [
+    {
+      name: "Unauthorized Access",
+      thumbnail: "/thumbnails/thumb1.png",
+    },
+    { name: "Gun Threat", thumbnail: "/thumbnails/thumb2.jpg" },
+    { name: "Face Recognised", thumbnail: "/thumbnails/thumb3.jpg" },
+  ];
 
   for (let i = 0; i < 15; i++) {
     const camId = cameraIds[Math.floor(Math.random() * cameraIds.length)];
-    const type = types[Math.floor(Math.random() * types.length)];
+    const randomType = types[Math.floor(Math.random() * types.length)];
     const start = faker.date.recent(1);
     const end = new Date(start.getTime() + 10 * 60 * 1000);
 
     incidents.push({
       cameraId: camId,
-      type: type,
+      type: randomType.name,
       tsStart: start,
       tsEnd: end,
-      thumbnailUrl: `/thumbnails/thumb${(i % 3) + 1}.jpg`,
+      thumbnailUrl: randomType.thumbnail,
       resolved: false,
     });
   }
 
   await prisma.incident.createMany({ data: incidents });
-  console.log("Seeding completed successfully.");
+  console.log("✅ Seeding completed successfully.");
 }
 
 main().catch((e) => {
-  console.error("Error during seeding:", e);
+  console.error("❌ Error during seeding:", e);
   process.exit(1);
 });
