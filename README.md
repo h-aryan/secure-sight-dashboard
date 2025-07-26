@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SecureSight CCTV Dashboard
 
-## Getting Started
+A real-time security monitoring dashboard built with **Next.js 15 App Router**, **Tailwind CSS**, and **Prisma** with **SQLite**. The dashboard features a live incident player, overlay camera thumbnails, and a fully integrated incident management system.
 
-First, run the development server:
+**Live Demo**: [https://secure-sight-dashboard-production.up.railway.app](https://secure-sight-dashboard-production.up.railway.app)
+
+---
+
+## 🚀 Deployment Instructions
+
+### 📁 Clone the Repository
+
+```bash
+git clone https://github.com/h-aryan/secure-sight-dashboard.git
+cd secure-sight-dashboard
+```
+
+### 📦 Install Dependencies
+
+```bash
+npm install
+```
+
+### ⚙️ Setup Environment Variables
+
+Create a `.env` file in the root directory and add the following:
+
+```env
+DATABASE_URL="file:./dev.db"
+```
+
+### 🛠️ Push Prisma Schema
+
+```bash
+npx prisma migrate dev --name init
+```
+
+### ▶️ Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## ☁️ Deployment on Railway
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🌐 Steps
 
-## Learn More
+1. Connect the GitHub repository to [Railway](https://railway.app).
+2. Add the following environment variable in Railway project settings:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+DATABASE_URL="file:./dev.db"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Set Build & Start commands:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Build Command:**
 
-## Deploy on Vercel
+```bash
+npm install && npx prisma generate
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Start Command:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm start
+```
+
+4. Deploy! Railway will automatically build and serve the app.
+
+---
+
+## 🧠 Tech Decisions
+
+- **Next.js 15 App Router** for routing and SSR.
+- **Tailwind CSS** for UI styling and layout.
+- **Prisma ORM** with **SQLite** for a lightweight and fast local DB.
+- **App Router Actions** for data fetching and mutations.
+- **Railway** for seamless full-stack deployment.
+
+---
+
+## 🔮 If I Had More Time…
+
+- Add authentication (admin login)
+- Add real-time camera feed using WebSockets or WebRTC
+- Create an analytics panel (incident trends, heatmaps)
+- Enhance accessibility and mobile responsiveness
+- Add edit/delete incident functionality
+- Add toast notifications and better error handling
+
+---
+
+
