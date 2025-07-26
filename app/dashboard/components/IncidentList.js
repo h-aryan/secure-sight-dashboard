@@ -14,7 +14,7 @@ export default function IncidentList() {
   const handleResolve = async (id) => {
     setIncidents((prev) => prev.filter((inc) => inc.id !== id)); // optimistic UI
 
-    await fetch(`/api/incidents/${id}/resolve`, {
+    await fetch(`/api/incidents/resolve?id=${id}`, {
       method: "PATCH",
     });
   };
